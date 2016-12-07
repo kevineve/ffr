@@ -130,10 +130,12 @@ function createContent(foundFood){
 
  function handleClientLoad() {
   // Load the API client and auth2 library
+  console.log("handleClientLoad")
   gapi.load('client:auth2', initClient);
 }
 
 function initClient() {
+  console.log("initClient")
   gapi.client.init({
       apiKey: apiKey,
       discoveryDocs: discoveryDocs,
@@ -150,6 +152,7 @@ function initClient() {
 }
 
 function updateSigninStatus(isSignedIn) {
+  console.log("updateSigninStatus")
   if (isSignedIn) {
     authorizeButton.style.display = 'none';
     signoutButton.style.display = 'block';
@@ -160,13 +163,16 @@ function updateSigninStatus(isSignedIn) {
   }
 }
 function handleAuthClick(event) {
+  console.log("handleAuthClick")
   gapi.auth2.getAuthInstance().signIn();
 }
 function handleSignoutClick(event) {
+  console.log("handleSignoutClick")
   gapi.auth2.getAuthInstance().signOut();
 }
 // Load the API and make an API call.  Display the results on the screen.
 function makeApiCall() {
+  console.log("makeApiCall")
   api.client.sheets.spreadsheets.values.get({
     spreadsheetId: '1VZwr1nCFcEs7Cnr2u-Gq-92ayhf3QWAtlPiUdeOn7e8',
     range: 'Class Data!A2:E',
