@@ -181,10 +181,10 @@ function makeApiCall() {
     var range = response.result;
     if (range.values.length > 0) {
       appendPre('Name, Major:');
-      for (i = 0; i < range.values.length; i++) {
+      for (var i = 0; i < range.values.length; i++) {
         var row = range.values[i];
         // Print columns A and E, which correspond to indices 0 and 4.
-        appendPre(row[0] + ', ' + row[4]);
+        appendPre(row);
       }
     } else {
       appendPre('No data found.');
