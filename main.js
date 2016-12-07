@@ -162,6 +162,7 @@ function updateSigninStatus(isSignedIn) {
     signoutButton.style.display = 'none';
   }
 }
+
 function handleAuthClick(event) {
   console.log("handleAuthClick")
   gapi.auth2.getAuthInstance().signIn();
@@ -173,7 +174,7 @@ function handleSignoutClick(event) {
 // Load the API and make an API call.  Display the results on the screen.
 function makeApiCall() {
   console.log("makeApiCall")
-  api.client.sheets.spreadsheets.values.get({
+  gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: '1VZwr1nCFcEs7Cnr2u-Gq-92ayhf3QWAtlPiUdeOn7e8',
     range: 'Class Data!A2:E',
   }).then(function(response) {
