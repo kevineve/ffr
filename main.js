@@ -32,7 +32,9 @@ var clientId = '730754927773-52c3bj4309k9co16t4mjrlppe1ujvqr9.apps.googleusercon
 // for details.
 var scopes = 'https://www.googleapis.com/auth/spreadsheets.readonly';
 var authorizeButton = document.getElementById('authorize-button');
+console.log(authorizeButton)
 var signoutButton = document.getElementById('signout-button');
+console.log(signoutButton)
 
 $(function () {
   $('#fileform').on('submit', uploadFiles);
