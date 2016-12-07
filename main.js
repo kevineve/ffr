@@ -176,7 +176,7 @@ function makeApiCall() {
   console.log("makeApiCall")
   gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: '1VZwr1nCFcEs7Cnr2u-Gq-92ayhf3QWAtlPiUdeOn7e8',
-    range: 'Class Data!A2:E',
+    range: 'Sheet1!A1:E1',
   }).then(function(response) {
     var range = response.result;
     if (range.values.length > 0) {
