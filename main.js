@@ -132,6 +132,7 @@ function storeData(foundFood){
   gapi.client.sheets.spreadsheets.values.append({
     "spreadsheetId": '1VZwr1nCFcEs7Cnr2u-Gq-92ayhf3QWAtlPiUdeOn7e8',
     "range": 'Sheet1!A1:E1',
+    'valueInputOption':"RAW"
     "majorDimension": "ROWS",
     "values":[[1,"hi","01/23/16"]],
   }).then(function(response) {
