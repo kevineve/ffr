@@ -106,7 +106,7 @@ function parseReceiptData(data){
   var regexList = window.foodList
   var match
   var date = getDate()
-  console.log(recieptContent)
+  //console.log(recieptContent)
   var listRows = recieptContent.split('\n')
   for(var i = 0; i < listRows.length; i++){
     for( var j = 0; j<3; j++){
@@ -115,7 +115,7 @@ function parseReceiptData(data){
         match = listRows[i].match(regexList[j][k])
         if(match){
           foundFood.push([match[0],j*4 + 3],date)
-          //console.log([match[0],j*4 + 3])
+          console.log([match[0],j*4 + 3],date)
           continue
         }
       }
@@ -129,11 +129,11 @@ function parseReceiptData(data){
 }
 function storeData(foundFood){
   console.log("storeData")
-  gapi.client.sheets.spreadsheets.values.append({
+  gapi.sheets.spreadsheets.values.append({
     spreadsheetId: '1VZwr1nCFcEs7Cnr2u-Gq-92ayhf3QWAtlPiUdeOn7e8',
     range: 'Sheet1!A1:E1',
     "majorDimension": "ROWS",
-    "values":foundFood,
+    "values":[[1,"hi","01/23/16"]],
   }).then(function(response) {
     appendPre('Error: ' + response.result.error.message);
   });
