@@ -135,10 +135,10 @@ function storeData(foundFood){
     'valueInputOption':"RAW",
     "majorDimension": "ROWS",
     "values":[[1,"hi","01/23/16"]],
-  })
-  // }).then(function(response) {
-  //   appendPre('Error: ' + response.result.error.message);
-  // });
+  }).then(function(response) {
+    appendPre('Error: ' + response.error.message);
+    console.log(response)
+  });
 }
 
 function loadContent(){
