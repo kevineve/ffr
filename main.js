@@ -35,10 +35,13 @@ var authorizeButton = document.getElementById('authorize-button');
 console.log(authorizeButton)
 var signoutButton = document.getElementById('signout-button');
 console.log(signoutButton)
+var submitButton = document.getElementById('submit-button');
 
 $(function () {
   $('#fileform').on('submit', uploadFiles);
 });
+
+
 
 /**
  * 'submit' event handler - reads the image bytes and sends it to the Cloud
@@ -100,6 +103,7 @@ function parseReceiptData(data){
   var recieptContent = data
   var regexList = window.foodList
   var match
+  var date = getDate()
   //console.log(recieptContent)
   var listRows = recieptContent.split('\n')
   for(var i = 0; i < listRows.length; i++){
@@ -108,7 +112,7 @@ function parseReceiptData(data){
         //console.log(listRows[i])
         match = listRows[i].match(regexList[j][k])
         if(match){
-          foundFood.push([match[0],j*4 + 3])
+          foundFood.push([match[0],j*4 + 3],date)
           //console.log([match[0],j*4 + 3])
           continue
         }
@@ -116,15 +120,24 @@ function parseReceiptData(data){
     }
     //console.log(listRows[i])
   }
+  storeData(foundFood);
   // for(var i = 0; i < foundFood.length; i++){
   //   console.log(foundFood[i])
   // }
 }
 function storeData(foundFood){
-
+  console.log("storeData")
+  gapi.client.sheets.spreadsheets.values.append({
+    spreadsheetId: '1VZwr1nCFcEs7Cnr2u-Gq-92ayhf3QWAtlPiUdeOn7e8',
+    range: 'Sheet1!A1:E1',
+    "majorDimension": "ROWS",
+    "values":foundFood,
+  }).then(function(response) {
+    appendPre('Error: ' + response.result.error.message);
+  });
 }
 
-function createContent(foundFood){
+function loadContent(){
 
 }
 
@@ -148,6 +161,7 @@ function initClient() {
     updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
     authorizeButton.onclick = handleAuthClick;
     signoutButton.onclick = handleSignoutClick;
+    submitButton.onclick = 
   });
 }
 
@@ -156,7 +170,6 @@ function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {
     authorizeButton.style.display = 'none';
     signoutButton.style.display = 'block';
-    makeApiCall();
   } else {
     authorizeButton.style.display = 'block';
     signoutButton.style.display = 'none';
@@ -170,6 +183,9 @@ function handleAuthClick(event) {
 function handleSignoutClick(event) {
   console.log("handleSignoutClick")
   gapi.auth2.getAuthInstance().signOut();
+}
+function handleSubmitClick(event) {
+  uploadFiles()
 }
 // Load the API and make an API call.  Display the results on the screen.
 function makeApiCall() {
@@ -194,6 +210,23 @@ function makeApiCall() {
   });
 }
 
+function getDate(){
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+
+  if(dd<10) {
+      dd='0'+dd
+  } 
+
+  if(mm<10) {
+      mm='0'+mm
+  } 
+
+  today = mm+'/'+dd+'/'+yyyy;
+  return today
+}
 //   gapi.client.people.people.get({
 //     resourceName: 'people/me'
 //   }).then(function(resp) {
