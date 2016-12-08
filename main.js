@@ -148,11 +148,17 @@ function loadContents(){
   console.log("loadContents")
   gapi.client.sheets.spreadsheets.values.get({
     "spreadsheetId": '1VZwr1nCFcEs7Cnr2u-Gq-92ayhf3QWAtlPiUdeOn7e8',
-    "range": 'Sheet1!A1:C100',
+    "range": 'Sheet1!A2:C100',
     "majorDimension": "ROWS",
   }).then(function(response) {
     //appendPre('Error: ' + response.error.message);
     console.log(response)
+    var fridgeContents = response.result.values
+    for(var i = 0; i < fridgeContents.length;i++){
+      if(fridgeContents[i][2]>getDate()){
+        appendPre(fridgeContents[i])
+      }
+    }
   });
 }
 
@@ -253,6 +259,7 @@ function getDate(){
  */
 function appendPre(message) {
   var pre = document.getElementById('output');
+  pre.empyt()
   var textContent = document.createTextNode(message + '\n');
   pre.appendChild(textContent);
 }
