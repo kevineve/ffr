@@ -120,14 +120,16 @@ function parseReceiptData(data){
         }
       }
     }
-    //console.log(listRows[i])
+
   }
   
   for(var i = 0; i < foundFood.length; i++){
     console.log(foundFood[i])
   }
   storeData(foundFood);
+  loadContents();
 }
+
 function storeData(foundFood){
   console.log("storeData")
   gapi.client.sheets.spreadsheets.values.append({
@@ -143,7 +145,16 @@ function storeData(foundFood){
 }
 
 function loadContent(){
-
+  console.log("loadContent")
+  gapi.client.sheets.spreadsheets.values.get({
+    "spreadsheetId": '1VZwr1nCFcEs7Cnr2u-Gq-92ayhf3QWAtlPiUdeOn7e8',
+    "range": 'Sheet1!A1:E1',
+    'valueInputOption':"RAW",
+    "majorDimension": "ROWS",
+  }).then(function(response) {
+    //appendPre('Error: ' + response.error.message);
+    console.log(response)
+  });
 }
 
  function handleClientLoad() {
@@ -219,7 +230,7 @@ function makeApiCall() {
 function getDate(){
   var today = new Date();
   var dd = today.getDate();
-  var mm = today.getMonth(); //January is 0!
+  var mm = today.getMonth()+1; //January is 0!
   var yyyy = today.getFullYear();
 
   if(dd<10) {
