@@ -36,7 +36,7 @@ console.log(authorizeButton)
 var signoutButton = document.getElementById('signout-button');
 console.log(signoutButton)
 var submitButton = document.getElementById('submit-button');
-console.log(signoutButton)
+console.log(submitButton)
 
 // $(function () {
 //   $('#fileform').on('submit', uploadFiles);
@@ -164,6 +164,7 @@ function initClient() {
     authorizeButton.onclick = handleAuthClick;
     signoutButton.onclick = handleSignoutClick;
     submitButton.onclick = handleSubmitClick;
+    submitButton.stle.display = 'block';
   });
 }
 
