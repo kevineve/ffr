@@ -135,7 +135,7 @@ function storeData(foundFood){
     "range": 'Sheet1!A1:E1',
     'valueInputOption':"RAW",
     "majorDimension": "ROWS",
-    "values":[foundFood],
+    "values":foundFood,
   }).then(function(response) {
     //appendPre('Error: ' + response.error.message);
     console.log(response)
