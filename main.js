@@ -36,10 +36,11 @@ console.log(authorizeButton)
 var signoutButton = document.getElementById('signout-button');
 console.log(signoutButton)
 var submitButton = document.getElementById('submit-button');
+console.log(signoutButton)
 
-$(function () {
-  $('#fileform').on('submit', uploadFiles);
-});
+// $(function () {
+//   $('#fileform').on('submit', uploadFiles);
+// });
 
 
 
@@ -48,6 +49,7 @@ $(function () {
  * Vision API.
  */
 function uploadFiles (event) {
+  console.log("uploadFiles")
   parseReceiptData(window.receiptText)
   // event.preventDefault(); // Prevent the default form post
 
@@ -104,7 +106,7 @@ function parseReceiptData(data){
   var regexList = window.foodList
   var match
   var date = getDate()
-  //console.log(recieptContent)
+  console.log(recieptContent)
   var listRows = recieptContent.split('\n')
   for(var i = 0; i < listRows.length; i++){
     for( var j = 0; j<3; j++){
