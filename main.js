@@ -155,7 +155,7 @@ function loadContents(){
     console.log(response)
     var fridgeContents = response.result.values["0"]
     console.log(fridgeContents)
-    var purchaseDate= getDate(fridgeContents[i][2])
+    var purchaseDate= getDate(fridgeContents[i.toString()]["2"])
     for(var i = 0; i < fridgeContents.length;i++){
       purchaseDate = new Date
       if(purchaseDate>getDate()){
