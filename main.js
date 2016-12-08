@@ -148,7 +148,7 @@ function loadContents(){
   console.log("loadContents")
   gapi.client.sheets.spreadsheets.values.get({
     "spreadsheetId": '1VZwr1nCFcEs7Cnr2u-Gq-92ayhf3QWAtlPiUdeOn7e8',
-    "range": 'Sheet1!A1:E1',
+    "range": 'Sheet1!A1:E10',
     "majorDimension": "ROWS",
   }).then(function(response) {
     //appendPre('Error: ' + response.error.message);
