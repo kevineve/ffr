@@ -153,11 +153,11 @@ function loadContents(){
   }).then(function(response) {
     //appendPre('Error: ' + response.error.message);
     console.log(response)
-    var fridgeContents = response.result.values["0"]
-    console.log(fridgeContents)
-    var purchaseDate= getDate(fridgeContents[i.toString()]["2"])
+    var fridgeContents = response.result.values
+    //console.log(fridgeContents)
+    var purchaseDate= getDate()
     for(var i = 0; i < fridgeContents.length;i++){
-      purchaseDate = new Date
+      purchaseDate = new Date(fridgeContents[i.toString()]["2"])
       if(purchaseDate>getDate()){
         appendPre(fridgeContents[i])
       }
