@@ -30,7 +30,7 @@ var clientId = '730754927773-52c3bj4309k9co16t4mjrlppe1ujvqr9.apps.googleusercon
 // Enter one or more authorization scopes. Refer to the documentation for
 // the API or https://developers.google.com/people/v1/how-tos/authorizing
 // for details.
-var scopes = 'https://www.googleapis.com/auth/spreadsheets.readonly';
+var scopes = 'https://www.googleapis.com/auth/spreadsheets';
 var authorizeButton = document.getElementById('authorize-button');
 console.log(authorizeButton)
 var signoutButton = document.getElementById('signout-button');
@@ -216,7 +216,7 @@ function makeApiCall() {
 function getDate(){
   var today = new Date();
   var dd = today.getDate();
-  var mm = today.getMonth()+1; //January is 0!
+  var mm = today.getMonth(); //January is 0!
   var yyyy = today.getFullYear();
 
   if(dd<10) {
