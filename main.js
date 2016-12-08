@@ -177,6 +177,7 @@ function initClient() {
     authorizeButton.onclick = handleAuthClick;
     signoutButton.onclick = handleSignoutClick;
     submitButton.onclick = handleSubmitClick;
+    loadContents()
     //submitButton.stle.display = 'block';
   });
 }
