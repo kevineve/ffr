@@ -153,7 +153,8 @@ function loadContents(){
   }).then(function(response) {
     //appendPre('Error: ' + response.error.message);
     console.log(response)
-    var fridgeContents = response.result.values
+    var fridgeContents = response.result.values["0"]
+    console.log(fridgeContents)
     var purchaseDate= getDate(fridgeContents[i][2])
     for(var i = 0; i < fridgeContents.length;i++){
       purchaseDate = new Date
