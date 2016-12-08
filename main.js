@@ -115,17 +115,18 @@ function parseReceiptData(data){
         match = listRows[i].match(regexList[j][k])
         if(match){
           foundFood.push([match[0],(j*4 + 3).toString(), date])
-          console.log([match[0],(j*4 + 3).toString(), date])
+          //console.log([match[0],(j*4 + 3).toString(), date])
           continue
         }
       }
     }
     //console.log(listRows[i])
   }
+  
+  for(var i = 0; i < foundFood.length; i++){
+    console.log(foundFood[i])
+  }
   storeData(foundFood);
-  // for(var i = 0; i < foundFood.length; i++){
-  //   console.log(foundFood[i])
-  // }
 }
 function storeData(foundFood){
   console.log("storeData")
