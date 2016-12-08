@@ -157,9 +157,11 @@ function loadContents(){
     //console.log(fridgeContents)
     var purchaseDate= getDate()
     for(var i = 0; i < fridgeContents.length;i++){
+      console.log(fridgeContents[i.toString()])
       purchaseDate = new Date(fridgeContents[i.toString()]["2"])
+      console.log(purchaseDate,getDate())
       if(purchaseDate>getDate()){
-        appendPre(fridgeContents[i])
+        appendPre(fridgeContents[i.toString()])
       }
     }
   });
