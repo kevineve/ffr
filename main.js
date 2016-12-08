@@ -130,8 +130,8 @@ function parseReceiptData(data){
 function storeData(foundFood){
   console.log("storeData")
   gapi.sheets.spreadsheets.values.append({
-    spreadsheetId: '1VZwr1nCFcEs7Cnr2u-Gq-92ayhf3QWAtlPiUdeOn7e8',
-    range: 'Sheet1!A1:E1',
+    "spreadsheetId": '1VZwr1nCFcEs7Cnr2u-Gq-92ayhf3QWAtlPiUdeOn7e8',
+    "range": 'Sheet1!A1:E1',
     "majorDimension": "ROWS",
     "values":[[1,"hi","01/23/16"]],
   }).then(function(response) {
