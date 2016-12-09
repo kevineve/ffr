@@ -106,7 +106,7 @@ function parseReceiptData(data){
   var regexList = window.foodList
   var newregex = window.newFoods
   var match
-  var date = getDate()
+  var date = getDate(null)
   //console.log(recieptContent)
   var listRows = recieptContent.split('\n')
   for(var i = 0; i < listRows.length; i++){
@@ -161,12 +161,12 @@ function loadContents(){
     console.log(response)
     var fridgeContents = response.result.values
     //console.log(fridgeContents)
-    var purchaseDate= getDate()
+    var purchaseDate= getDate(null)
     for(var i = 0; i < fridgeContents.length;i++){
       console.log(fridgeContents[i.toString()])
-      purchaseDate = new Date(fridgeContents[i.toString()]["2"])
-      console.log(purchaseDate,getDate())
-      if(purchaseDate>getDate()){
+      purchaseDate = getDate(fridgeContents[i.toString()]["2"])
+      console.log(purchaseDate,getDate(null))
+      if(purchaseDate>getDate(null)){
         appendPre(fridgeContents[i.toString()])
       }
     }
@@ -244,8 +244,8 @@ function makeApiCall() {
   });
 }
 
-function getDate(){
-  var today = new Date();
+function getDate(date){
+  var today = new Date(date);
   var dd = today.getDate();
   var mm = today.getMonth()+1; //January is 0!
   var yyyy = today.getFullYear();
