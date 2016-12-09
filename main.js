@@ -162,11 +162,13 @@ function loadContents(){
     var fridgeContents = response.result.values
     //console.log(fridgeContents)
     var purchaseDate= getDate(null)
+    var daysFresh = 0
     for(var i = 0; i < fridgeContents.length;i++){
       console.log(fridgeContents[i.toString()])
       purchaseDate = getDate(fridgeContents[i.toString()]["2"])
+      daysFresh = parseInt(fridgeContents[i.toString()]["1"])
       console.log(purchaseDate,getDate(null))
-      if(purchaseDate>getDate(null)){
+      if(purchaseDate + daysFresh >getDate(null)){
         appendPre(fridgeContents[i.toString()])
       }
     }
