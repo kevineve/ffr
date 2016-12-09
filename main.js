@@ -114,8 +114,10 @@ function parseReceiptData(data){
       for( var k = 0; k < regexList[j].length; k++){
         //console.log(listRows[i])
         var othermatch = listRows[i].match(newregex[0][0])
-        console.log(othermatch.toString())
-        console.log("NEWSHIT")
+        if(othermatch){}
+          console.log(othermatch.toString())
+          console.log("NEWSHIT")
+        }
         match = listRows[i].match(regexList[j][k])
         if(match){
           foundFood.push([match[0],(j*4 + 3).toString(), date])
