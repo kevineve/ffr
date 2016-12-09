@@ -277,7 +277,7 @@ function getDate(date){
  */
 function appendPre(message) {
   var pre = document.getElementById('output');
-  pre.empty()
+  //pre.empty()
   var textContent = document.createTextNode(message + '\n');
   pre.appendChild(textContent);
 }
