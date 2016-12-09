@@ -245,7 +245,11 @@ function makeApiCall() {
 }
 
 function getDate(date){
-  var today = new Date(date);
+  if(date){
+    var today = new Date(date);
+  }
+  else:
+    var today = new Date()
   var dd = today.getDate();
   var mm = today.getMonth()+1; //January is 0!
   var yyyy = today.getFullYear();
