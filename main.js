@@ -114,7 +114,7 @@ function parseReceiptData(data){
       for( var k = 0; k < regexList[j].length; k++){
         //console.log(listRows[i])
         var othermatch = listRows[i].match(newregex[0][0])
-        if(othermatch){}
+        if(othermatch){
           console.log(othermatch.toString())
           console.log("NEWSHIT")
         }
