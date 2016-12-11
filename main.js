@@ -111,7 +111,7 @@ function parseReceiptData(data){
   //console.log(recieptContent)
   var listRows = recieptContent.split('\n')
   for(var i = 0; i < listRows.length; i++){
-    for( var k = 0; k < regexList[j].length; k++){
+    for( var k = 0; k < regexList.length; k++){
       //console.log(listRows[i])
       var othermatch = listRows[i].match(newregex[0][0])
       if(othermatch){
