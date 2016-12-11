@@ -106,7 +106,7 @@ function parseReceiptData(data){
   var recieptContent = data
   var regexList = window.foodList
   var match
-  var date = getDate(null)
+  var date = new Date()
   //console.log(recieptContent)
   var listRows = recieptContent.split('\n')
   for(var i = 0; i < listRows.length; i++){
@@ -114,7 +114,7 @@ function parseReceiptData(data){
       //console.log(listRows[i])
       match = listRows[i].match(regexList[k][0])
       if(match){
-        foundFood.push([match[0],regexList[k][1].toString(), date.toString()])
+        foundFood.push([match[0],regexList[k][1].toString(), date])
         //console.log([match[0],(j*4 + 3).toString(), date])
         continue
       }
@@ -157,16 +157,17 @@ function loadContents(){
     }
     var fridgeContents = response.result.values
     //console.log(fridgeContents)
-    var purchaseDate= getDate(null)
+    var purchaseDate;
+    var date = new Date()
     var daysFresh = 0
     for(var i = 0; i < fridgeContents.length;i++){
       console.log(fridgeContents[i.toString()])
-      purchaseDate = getDate(fridgeContents[i.toString()]["2"])
-      var other_purchaseDate = new Date(fridgeContents[i.toString()]["2"])
+      purchaseDate = new Date(fridgeContents[i.toString()]["2"]))
       daysFresh = parseInt(fridgeContents[i.toString()]["1"])
-      console.log(purchaseDate,other_purchaseDate, getDate(null))
-      purchaseDate.setDate(purchaseDate + daysFresh)
-      if(purchaseDate>getDate(null)){
+      console.log(purchaseDate, getDate(null))
+      purchaseDate.setDate(purchaseDate.getDate() + daysFresh)
+      console.log(purchaseDate)
+      if(purchaseDate>date){
         appendPre(fridgeContents[i.toString()][0],purchaseDate)
       }
     }
@@ -244,26 +245,26 @@ function makeApiCall() {
   });
 }
 
-function getDate(date){
+function getFormattedDate(date){
   if(date){
     var today = new Date(date);
   }
   else{
     var today = new Date()
   }
-  // var dd = today.getDate();
-  // var mm = today.getMonth()+1; //January is 0!
-  // var yyyy = today.getFullYear();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
 
-  // if(dd<10) {
-  //     dd='0'+dd
-  // } 
+  if(dd<10) {
+      dd='0'+dd
+  } 
 
-  // if(mm<10) {
-  //     mm='0'+mm
-  // } 
+  if(mm<10) {
+      mm='0'+mm
+  } 
 
-  // today = mm+'/'+dd+'/'+yyyy;
+  today = mm+'/'+dd+'/'+yyyy;
   return today
 }
 
