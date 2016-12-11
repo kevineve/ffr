@@ -110,20 +110,18 @@ function parseReceiptData(data){
   //console.log(recieptContent)
   var listRows = recieptContent.split('\n')
   for(var i = 0; i < listRows.length; i++){
-    for( var j = 0; j<3; j++){
-      for( var k = 0; k < regexList[j].length; k++){
-        //console.log(listRows[i])
-        var othermatch = listRows[i].match(newregex[0][0])
-        if(othermatch){
-          console.log(othermatch.toString())
-          console.log("NEWSHIT")
-        }
-        match = listRows[i].match(regexList[j][k])
-        if(match){
-          foundFood.push([match[0],(j*4 + 3).toString(), date])
-          //console.log([match[0],(j*4 + 3).toString(), date])
-          continue
-        }
+    for( var k = 0; k < regexList[j].length; k++){
+      //console.log(listRows[i])
+      var othermatch = listRows[i].match(newregex[0][0])
+      if(othermatch){
+        console.log(othermatch.toString())
+        console.log("NEWSHIT")
+      }
+      match = listRows[i].match(regexList[k][0])
+      if(match){
+        foundFood.push([match[0],regexList[k][1].toString(), date])
+        //console.log([match[0],(j*4 + 3).toString(), date])
+        continue
       }
     }
 
@@ -169,7 +167,8 @@ function loadContents(){
       daysFresh = parseInt(fridgeContents[i.toString()]["1"])
       console.log(purchaseDate,getDate(null))
       if(purchaseDate + daysFresh >getDate(null)){
-        appendPre(fridgeContents[i.toString()])
+        purchaseDate.setDate(purchaseDate.getDate() + daysFresh)
+        appendPre(fridgeContents[i.toString()][0],purchaseDate)
       }
     }
   });
