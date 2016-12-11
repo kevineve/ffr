@@ -50,6 +50,7 @@ console.log(submitButton)
  */
 function uploadFiles (event) {
   console.log("uploadFiles")
+  console.log(window.receiptText)
   parseReceiptData(window.receiptText)
   // event.preventDefault(); // Prevent the default form post
 
