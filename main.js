@@ -157,6 +157,9 @@ function loadContents(){
   }).then(function(response) {
     //appendPre('Error: ' + response.error.message);
     console.log(response)
+    if(!responses.result.values){
+      return
+    }
     var fridgeContents = response.result.values
     //console.log(fridgeContents)
     var purchaseDate= getDate(null)
