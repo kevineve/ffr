@@ -162,7 +162,7 @@ function loadContents(){
     for(var i = 0; i < fridgeContents.length;i++){
       console.log(fridgeContents[i.toString()])
       purchaseDate = getDate(fridgeContents[i.toString()]["2"])
-      other_purchaseDate = new Date(fridgeContents[i.toString()]["2"])
+      var other_purchaseDate = new Date(fridgeContents[i.toString()]["2"])
       daysFresh = parseInt(fridgeContents[i.toString()]["1"])
       console.log(purchaseDate,other_purchaseDate, getDate(null))
       purchaseDate.setDate(purchaseDate + daysFresh)
