@@ -157,7 +157,7 @@ function loadContents(){
   }).then(function(response) {
     //appendPre('Error: ' + response.error.message);
     console.log(response)
-    if(!responses.result.values){
+    if(!response.result.values){
       return
     }
     var fridgeContents = response.result.values
