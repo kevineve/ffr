@@ -164,7 +164,7 @@ function loadContents(){
       console.log(fridgeContents[i.toString()])
       purchaseDate = new Date(fridgeContents[i.toString()]["2"])
       daysFresh = parseInt(fridgeContents[i.toString()]["1"])
-      console.log(purchaseDate, getDate(null))
+      console.log(purchaseDate, date)
       purchaseDate.setDate(purchaseDate.getDate() + daysFresh)
       console.log(purchaseDate)
       if(purchaseDate>date){
