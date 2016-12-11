@@ -164,8 +164,8 @@ function loadContents(){
       purchaseDate = getDate(fridgeContents[i.toString()]["2"])
       daysFresh = parseInt(fridgeContents[i.toString()]["1"])
       console.log(purchaseDate,getDate(null))
-      if(purchaseDate + daysFresh >getDate(null)){
-        purchaseDate.setDate(purchaseDate.getDate() + daysFresh)
+      purchaseDate.setDate(purchaseDate.getDate() + daysFresh)
+      if(purchaseDate>getDate(null)){
         appendPre(fridgeContents[i.toString()][0],purchaseDate)
       }
     }
