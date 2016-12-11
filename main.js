@@ -169,6 +169,7 @@ function loadContents(){
       console.log(purchaseDate)
       if(purchaseDate>date){
         appendPre(fridgeContents[i.toString()][0],purchaseDate)
+        appendPre(purchaseDate.toString())
       }
     }
   });
