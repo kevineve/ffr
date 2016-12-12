@@ -37,6 +37,8 @@ var signoutButton = document.getElementById('signout-button');
 console.log(signoutButton)
 var submitButton = document.getElementById('submit-button');
 console.log(submitButton)
+// var mobileInput = document.getElementById('mobileInput');
+// console.log(mobileInput)
 
 // $(function () {
 //   $('#fileform').on('submit', uploadFiles);
@@ -198,7 +200,7 @@ function initClient() {
     signoutButton.onclick = handleSignoutClick;
     submitButton.onclick = handleSubmitClick;
     loadContents()
-    //submitButton.stle.display = 'block';
+    // mobileInput.onclick = handleMobileInput;
   });
 }
 
@@ -224,6 +226,9 @@ function handleSignoutClick(event) {
 function handleSubmitClick(event) {
   uploadFiles()
 }
+// function handleMobileInput(event){
+//    var file = myInput.files[0];
+// }
 // Load the API and make an API call.  Display the results on the screen.
 function makeApiCall() {
   console.log("makeApiCall")
