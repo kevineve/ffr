@@ -276,7 +276,7 @@ function show_image(src, alt) {
 //http://thenewcode.com/834/Auto-Generate-Image-Captions-With-Progressive-JavaScript
 function appendItem(src,item,date){
   var fig = document.createElement('figure')
-  fig.style.display = 'inline-block;'
+  fig.style.display = 'table;'
 
   var img = document.createElement("img");
   img.src = src;
@@ -284,10 +284,11 @@ function appendItem(src,item,date){
   img.height = 200;
 
   var caption = document.createElement( 'figcaption' );
-  caption.innerHTML = item + "Fresh Until: " + date
-  caption.style.textAlign = 'center';
+  caption.innerHTML = item + " is Fresh Until: " + date
+  //caption.style.textAlign = 'center';
 
   var outputDiv = document.createElement('div')
+  outputDiv.style.display = "inline-block"
   document.getElementsByTagName('body')[0].appendChild(outputDiv);
   outputDiv.appendChild(fig)
   fig.appendChild(img)
