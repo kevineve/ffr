@@ -280,8 +280,8 @@ function appendItem(src,item,date){
 
   var img = document.createElement("img");
   img.src = src;
-  img.width = 600;
-  img.height = 400;
+  img.width = 300;
+  img.height = 200;
 
   var caption = document.createElement( 'figcaption' );
   caption.innerHTML = item + "Fresh Until: " + date
