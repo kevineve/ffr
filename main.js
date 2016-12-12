@@ -231,7 +231,7 @@ function appendItem(src,item,date){
   img.height = 200;
 
   var caption = document.createElement( 'figcaption' );
-  caption.innerHTML = item.capitalizeFirstLetter() + " Fresh Until: " + date
+  caption.innerHTML = capitalizeFirstLetter(item) + " Fresh Until: " + date
   caption.style.textAlign = 'center';
 
   var outputDiv = document.createElement('div')
@@ -244,10 +244,9 @@ function appendItem(src,item,date){
 }
 
 //http://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
-String.prototype.capitalizeFirstLetter = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
-  
 
 /**
  * Displays the results.
