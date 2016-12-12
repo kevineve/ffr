@@ -159,12 +159,13 @@ function loadContents(){
     var purchaseDate;
     var date = new Date()
     var daysFresh = 0
-    var url = ""
+    var url = " "
     for(var i = 0; i < fridgeContents.length;i++){
       console.log(fridgeContents[i.toString()])
       purchaseDate = new Date(fridgeContents[i.toString()]["2"])
       daysFresh = fridgeContents[i.toString()]["1"]
       url = window.urlList[fridgeContents[i.toString()]["3"]]
+      console.log(url)
       console.log(purchaseDate, date)
       purchaseDate.setDate(purchaseDate.getDate() + daysFresh)
       console.log(purchaseDate)
