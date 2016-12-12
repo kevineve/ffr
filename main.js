@@ -169,7 +169,7 @@ function loadContents(){
       console.log(purchaseDate)
       if(purchaseDate>date){
         appendPre(fridgeContents[i.toString()][0],purchaseDate)
-        appendPre(purchaseDate.toString())
+        appendPre(purchaseDate.toDateString()
       }
     }
   });
@@ -246,29 +246,6 @@ function makeApiCall() {
   });
 }
 
-function getFormattedDate(date){
-  if(date){
-    var today = new Date(date);
-  }
-  else{
-    var today = new Date()
-  }
-  var dd = today.getDate();
-  var mm = today.getMonth()+1; //January is 0!
-  var yyyy = today.getFullYear();
-
-  if(dd<10) {
-      dd='0'+dd
-  } 
-
-  if(mm<10) {
-      mm='0'+mm
-  } 
-
-  today = mm+'/'+dd+'/'+yyyy;
-  return today
-}
-
 /**
  * Append a pre element to the body containing the given message
  * as its text node.
@@ -280,6 +257,18 @@ function appendPre(message) {
   //pre.empty()
   var textContent = document.createTextNode(message + '\n');
   pre.appendChild(textContent);
+}
+
+// http://stackoverflow.com/questions/5451445/how-to-display-image-with-javascript
+function show_image(src, width, height, alt) {
+    var img = document.createElement("img");
+    img.src = src;
+    img.width = width;
+    img.height = height;
+    img.alt = alt;
+
+    // This next line will just add it to the <body> tag
+    document.body.appendChild(img);
 }
 
 /**
