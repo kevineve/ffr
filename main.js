@@ -37,9 +37,9 @@ console.log(signoutButton)
 var submitButton = document.getElementById('submit-button');
 console.log(submitButton)
 
-// $(function () {
-//   $('#fileform').on('submit', uploadFiles);
-// });
+$(function () {
+  $('#fileform').on('submit', uploadFiles);
+});
 
 
 
