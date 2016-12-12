@@ -276,16 +276,34 @@ function show_image(src, width, height, alt) {
 
 //http://stackoverflow.com/questions/247483/http-get-request-in-javascript
 function httpGetAsync(item, callback) {
-  var replaced = item.split(' ').join('+');
-  var url = "https://api.cognitive.microsoft.com/bing/v5.0/images/search?q=" + replaced + "&mkt=en-us&Ocp-Apim-Subscription-Key=MDU2NTQxMzM3ODJlNDIxYjg2OGQ4YzM4ZTI5MjRlMzY="
-
-  var xmlHttp = new XMLHttpRequest();
-  xmlHttp.onreadystatechange = function() { 
-      if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-          callback(xmlHttp.responseText);
-  }
-  xmlHttp.open("GET", url, true); // true for asynchronous 
-  xmlHttp.send(null);
+  item = item.split(' ').join('+')
+ $(function() {
+      var params = {
+          // Request parameters
+          "q": item,
+          "count": "1",
+          "offset": "0",
+          "mkt": "en-us",
+          "safeSearch": "Moderate",
+      };
+    
+      $.ajax({
+          url: "https://api.cognitive.microsoft.com/bing/v5.0/images/search?" + $.param(params),
+          beforeSend: function(xhrObj){
+              // Request headers
+              xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","{05654133782e421b868d8c38e2924e36}");
+          },
+          type: "GET",
+          // Request body
+          data: "{body}",
+      })
+      .done(function(data) {
+          alert("success");
+      })
+      .fail(function() {
+          alert("error");
+      });
+  });
 }
 /**
  * Displays the results.
