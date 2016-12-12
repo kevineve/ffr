@@ -49,19 +49,14 @@ $(function () {
  */
 function uploadFiles (event) {
   console.log("uploadFiles")
-  // console.log(window.receiptText)
-  // parseReceiptData(window.receiptText)
   event.preventDefault(); // Prevent the default form post
 
   // Grab the file and asynchronously convert to base64.
   var file = $('#fileform [name=fileField]')[0].files[0];
-  // console.log(file)
-  // if (typeof myVar == 'undefined'){
-  //   return
-  // }
   var reader = new FileReader();
   reader.onloadend = processFile;
   reader.readAsDataURL(file);
+  console.log("here")
 }
 
 /**
