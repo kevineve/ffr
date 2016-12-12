@@ -169,7 +169,7 @@ function loadContents(){
       console.log(purchaseDate)
       if(purchaseDate>date){
         appendPre(fridgeContents[i.toString()][0],purchaseDate)
-        appendPre(purchaseDate.toDateString()
+        appendPre(purchaseDate.toDateString())
         httpGetAsync(fridgeContents[i.toString()][0], function(response){
           console.log(response)
         })
