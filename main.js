@@ -231,7 +231,7 @@ function appendItem(src,item,date){
   img.height = 200;
 
   var caption = document.createElement( 'figcaption' );
-  caption.innerHTML = item.capitalizeFirstLetter() + " is Fresh Until: " + date
+  caption.innerHTML = item.capitalizeFirstLetter() + "\n Fresh Until: " + date
   //caption.style.textAlign = 'center';
 
   var outputDiv = document.createElement('div')
