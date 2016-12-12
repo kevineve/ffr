@@ -289,7 +289,7 @@ function appendItem(src,item,date){
   img.width = 600;
   img.height = 400;
 
-  caption = document.createElement( 'figcaption' );
+  var caption = document.createElement( 'figcaption' );
   caption.innerHTML = item 
 
   outputDiv.appendChild(fig)
