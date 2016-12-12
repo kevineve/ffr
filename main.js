@@ -36,7 +36,7 @@ var signoutButton = document.getElementById('signout-button');
 console.log(signoutButton)
 var submitButton = document.getElementById('submit-button');
 console.log(submitButton)
-var outputDiv = document.getElementsByTagName('div')[0]
+var outputDiv = document.createElement('div')
 console.log(outputDiv)
 console.log("yus")
 // $(function () {
@@ -293,7 +293,7 @@ function appendItem(src,item,date){
   var caption = document.createElement( 'figcaption' );
   caption.innerHTML = item 
 
-  //document.getElementsByTagName('div')[0].appendChild(i);
+  document.getElementsByTagName('body')[0].appendChild(outputDiv);
   outputDiv.appendChild(fig)
   fig.appendChild(img)
   fig.appendChild(caption)
