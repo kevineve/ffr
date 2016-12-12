@@ -284,7 +284,7 @@ function show_image(src, alt) {
 function appendItem(src,item,date){
   var fig = document.createElement('figure')
 
-  var img = var img = document.createElement("img");
+  var img = document.createElement("img");
   img.src = src;
   img.width = 600;
   img.height = 400;
