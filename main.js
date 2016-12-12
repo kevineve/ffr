@@ -101,9 +101,8 @@ function sendFileToCloudVision (content) {
 
 function parseReceiptData(data){
   console.log(parseReceiptData)
-  //var recieptContent = data.responses[0].textAnnotations[0].description
+  var recieptContent = data.responses[0].textAnnotations[0].description
   var foundFood = []
-  var recieptContent = data
   var regexList = window.foodList
   var match
   var date = new Date()
