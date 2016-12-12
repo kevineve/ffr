@@ -113,7 +113,8 @@ function parseReceiptData(data){
       //console.log(listRows[i])
       match = listRows[i].match(regexList[k][0])
       if(match){
-        foundFood.push([match[0],regexList[k][1], date,k])
+        foundFood.push([match[0],regexList[k][1], date , k])
+        console.log([match[0],regexList[k][1], date , k])
         //console.log([match[0],(j*4 + 3).toString(), date])
         continue
       }
