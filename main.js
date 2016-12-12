@@ -114,7 +114,7 @@ function parseReceiptData(data){
       //console.log(listRows[i])
       match = listRows[i].match(regexList[k][0])
       if(match){
-        foundFood.push([match[0],regexList[k][1].toString(), date])
+        foundFood.push([match[0],regexList[k][1], date,k])
         //console.log([match[0],(j*4 + 3).toString(), date])
         continue
       }
@@ -132,7 +132,7 @@ function storeData(foundFood){
   console.log("storeData")
   gapi.client.sheets.spreadsheets.values.append({
     "spreadsheetId": '1VZwr1nCFcEs7Cnr2u-Gq-92ayhf3QWAtlPiUdeOn7e8',
-    "range": 'Sheet1!A1:C1',
+    "range": 'Sheet1!A1:D1',
     'valueInputOption':"RAW",
     "majorDimension": "ROWS",
     "values":foundFood,
@@ -147,7 +147,7 @@ function loadContents(){
   console.log("loadContents")
   gapi.client.sheets.spreadsheets.values.get({
     "spreadsheetId": '1VZwr1nCFcEs7Cnr2u-Gq-92ayhf3QWAtlPiUdeOn7e8',
-    "range": 'Sheet1!A2:C100',
+    "range": 'Sheet1!A2:D100',
     "majorDimension": "ROWS",
   }).then(function(response) {
     //appendPre('Error: ' + response.error.message);
@@ -163,16 +163,14 @@ function loadContents(){
     for(var i = 0; i < fridgeContents.length;i++){
       console.log(fridgeContents[i.toString()])
       purchaseDate = new Date(fridgeContents[i.toString()]["2"])
-      daysFresh = parseInt(fridgeContents[i.toString()]["1"])
+      daysFresh = fridgeContents[i.toString()]["1"]
+      url = window.urlList[fridgeContents[i.toString()]["3"]]
       console.log(purchaseDate, date)
       purchaseDate.setDate(purchaseDate.getDate() + daysFresh)
       console.log(purchaseDate)
       if(purchaseDate>date){
         appendPre(fridgeContents[i.toString()][0],purchaseDate)
         appendPre(purchaseDate.toDateString())
-        httpGetAsync(fridgeContents[i.toString()][0], function(response){
-          console.log(response)
-        })
       }
     }
   });
@@ -274,37 +272,6 @@ function show_image(src, width, height, alt) {
     document.body.appendChild(img);
 }
 
-//http://stackoverflow.com/questions/247483/http-get-request-in-javascript
-function httpGetAsync(item, callback) {
-  item = item.split(' ').join('+')
- $(function() {
-      var params = {
-          // Request parameters
-          "q": item,
-          "count": "1",
-          "offset": "0",
-          "mkt": "en-us",
-          "safeSearch": "Moderate",
-      };
-    
-      $.ajax({
-          url: "https://api.cognitive.microsoft.com/bing/v5.0/images/search?" + $.param(params),
-          beforeSend: function(xhrObj){
-              // Request headers
-              xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","{05654133782e421b868d8c38e2924e36}");
-          },
-          type: "GET",
-          // Request body
-          // data: "{Host:api.cognitive.microsoft.com,Ocp-Apim-Subscription-Key:05654133782e421b868d8c38e2924e36}",
-      })
-      .done(function(data) {
-          alert("success");
-      })
-      .fail(function() {
-          alert("error");
-      });
-  });
-}
 /**
  * Displays the results.
  */
