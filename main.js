@@ -34,8 +34,8 @@ var authorizeButton = document.getElementById('authorize-button');
 console.log(authorizeButton)
 var signoutButton = document.getElementById('signout-button');
 console.log(signoutButton)
-var submitButton = document.getElementById('submit-button');
-console.log(submitButton)
+// var submitButton = document.getElementById('submit-button');
+// console.log(submitButton)
 
 $(function () {
   $('#fileform').on('submit', uploadFiles);
@@ -59,6 +59,7 @@ function uploadFiles (event) {
   if (typeof myVar == 'undefined'){
     return
   }
+  console
   var reader = new FileReader();
   reader.onloadend = processFile;
   reader.readAsDataURL(file);
