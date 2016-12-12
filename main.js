@@ -291,11 +291,11 @@ function httpGetAsync(item, callback) {
           url: "https://api.cognitive.microsoft.com/bing/v5.0/images/search?" + $.param(params),
           beforeSend: function(xhrObj){
               // Request headers
-              xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","05654133782e421b868d8c38e2924e36");
+              xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","OjA1NjU0MTMzNzgyZTQyMWI4NjhkOGMzOGUyOTI0ZTM2");
           },
           type: "GET",
           // Request body
-          data: "{Host:api.cognitive.microsoft.com,Ocp-Apim-Subscription-Key:05654133782e421b868d8c38e2924e36}",
+          // data: "{Host:api.cognitive.microsoft.com,Ocp-Apim-Subscription-Key:05654133782e421b868d8c38e2924e36}",
       })
       .done(function(data) {
           alert("success");
