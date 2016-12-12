@@ -119,12 +119,10 @@ function parseReceiptData(data){
         continue
       }
     }
-
   }
-  
-  for(var i = 0; i < foundFood.length; i++){
-    console.log(foundFood[i])
-  }
+  // for(var i = 0; i < foundFood.length; i++){
+  //   console.log(foundFood[i])
+  // }
   storeData(foundFood);
 }
 
@@ -221,57 +219,6 @@ function handleSignoutClick(event) {
 function handleSubmitClick(event) {
   uploadFiles()
 }
-// function handleMobileInput(event){
-//    var file = myInput.files[0];
-// }
-// Load the API and make an API call.  Display the results on the screen.
-function makeApiCall() {
-  console.log("makeApiCall")
-  gapi.client.sheets.spreadsheets.values.get({
-    spreadsheetId: '1VZwr1nCFcEs7Cnr2u-Gq-92ayhf3QWAtlPiUdeOn7e8',
-    range: 'Sheet1!A1:E1',
-  }).then(function(response) {
-    var range = response.result;
-    if (range.values.length > 0) {
-      appendPre('Name, Major:');
-      for (var i = 0; i < range.values.length; i++) {
-        var row = range.values[i];
-        // Print columns A and E, which correspond to indices 0 and 4.
-        appendPre(row);
-      }
-    } else {
-      appendPre('No data found.');
-    }
-  }, function(response) {
-    appendPre('Error: ' + response.result.error.message);
-  });
-}
-
-/**
- * Append a pre element to the body containing the given message
- * as its text node.
- *
- * @param {string} message Text to be placed in pre element.
- */
-function appendPre(message) {
-  var pre = document.getElementById('output');
-  //pre.empty()
-  var textContent = document.createTextNode(message + '\n');
-  pre.appendChild(textContent);
-}
-
-// http://stackoverflow.com/questions/5451445/how-to-display-image-with-javascript
-function show_image(src, alt) {
-    var img = document.createElement("img");
-    img.src = src;
-    img.width = 600;
-    img.height = 400;
-    img.title = "HOOORAY"
-    //img.alt = alt;
-
-    // This next line will just add it to the <body> tag
-    document.body.appendChild(img);
-}
 
 //http://thenewcode.com/834/Auto-Generate-Image-Captions-With-Progressive-JavaScript
 function appendItem(src,item,date){
@@ -284,7 +231,7 @@ function appendItem(src,item,date){
   img.height = 200;
 
   var caption = document.createElement( 'figcaption' );
-  caption.innerHTML = item + " is Fresh Until: " + date
+  caption.innerHTML = item.capitalizeFirstLetter() + " is Fresh Until: " + date
   //caption.style.textAlign = 'center';
 
   var outputDiv = document.createElement('div')
@@ -294,6 +241,11 @@ function appendItem(src,item,date){
   fig.appendChild(img)
   fig.appendChild(caption)
 
+}
+
+//http://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
 }
   
 
