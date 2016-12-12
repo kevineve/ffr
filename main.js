@@ -36,7 +36,7 @@ var signoutButton = document.getElementById('signout-button');
 console.log(signoutButton)
 var submitButton = document.getElementById('submit-button');
 console.log(submitButton)
-var outputDiv = document.getElementById('autocaption');
+var outputDiv = document.createElement('div')
 console.log(outputDiv)
 console.log("yus")
 // $(function () {
