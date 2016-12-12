@@ -55,6 +55,7 @@ function uploadFiles (event) {
 
   // Grab the file and asynchronously convert to base64.
   var file = $('#fileform [name=fileField]')[0].files[0];
+  console.log(file)
   var reader = new FileReader();
   reader.onloadend = processFile;
   reader.readAsDataURL(file);
