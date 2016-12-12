@@ -159,6 +159,7 @@ function loadContents(){
     var purchaseDate;
     var date = new Date()
     var daysFresh = 0
+    var url = ""
     for(var i = 0; i < fridgeContents.length;i++){
       console.log(fridgeContents[i.toString()])
       purchaseDate = new Date(fridgeContents[i.toString()]["2"])
