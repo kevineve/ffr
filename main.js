@@ -37,7 +37,7 @@ console.log(signoutButton)
 var submitButton = document.getElementById('submit-button');
 console.log(submitButton)
 var outputDiv = document.getElementById('autocaption');
-
+console.log(outputDiv)
 // $(function () {
 //   $('#fileform').on('submit', uploadFiles);
 // });
