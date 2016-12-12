@@ -255,9 +255,9 @@ function capitalizeFirstLetter(string) {
  */
 function displayJSON (data) {
   console.log("displayJSON")
-  var contents = JSON.stringify(data, null, 4);
-  $('#results').text(contents);
-  var evt = new Event('results-displayed');
+  // var contents = JSON.stringify(data, null, 4);
+  // $('#results').text(contents);
+  //var evt = new Event('results-displayed');
   parseReceiptData(data);
   // evt.results = contents;
   // document.dispatchEvent(evt);
