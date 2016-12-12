@@ -38,6 +38,7 @@ var submitButton = document.getElementById('submit-button');
 console.log(submitButton)
 var outputDiv = document.getElementById('autocaption');
 console.log(outputDiv)
+console.log("yus")
 // $(function () {
 //   $('#fileform').on('submit', uploadFiles);
 // });
