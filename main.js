@@ -36,6 +36,7 @@ var signoutButton = document.getElementById('signout-button');
 console.log(signoutButton)
 var submitButton = document.getElementById('submit-button');
 console.log(submitButton)
+var outputDiv = document.getElementById('autocaption');
 
 // $(function () {
 //   $('#fileform').on('submit', uploadFiles);
@@ -171,9 +172,10 @@ function loadContents(){
       purchaseDate.setDate(purchaseDate.getDate() + daysFresh)
       console.log(purchaseDate)
       if(purchaseDate>date){
-        appendPre(fridgeContents[i.toString()][0])
-        appendPre(purchaseDate.toDateString())
-        show_image(url)
+        appendItem(url,fridgeContents[i.toString()][0],purchaseDate.toDateString())
+        // appendPre(fridgeContents[i.toString()][0])
+        // appendPre(purchaseDate.toDateString())
+        // show_image(url)
       }
     }
   });
@@ -277,6 +279,25 @@ function show_image(src, alt) {
     // This next line will just add it to the <body> tag
     document.body.appendChild(img);
 }
+
+//http://thenewcode.com/834/Auto-Generate-Image-Captions-With-Progressive-JavaScript
+function appendItem(src,item,date){
+  var fig = document.createElement('figure')
+
+  var img = var img = document.createElement("img");
+  img.src = src;
+  img.width = 600;
+  img.height = 400;
+
+  caption = document.createElement( 'figcaption' );
+  caption.innerHTML = item 
+
+  outputDiv.appendChild(fig)
+  fig.appendChild(img)
+  fig.appendChild(caption)
+
+}
+  
 
 /**
  * Displays the results.
