@@ -218,7 +218,7 @@ function handleSignoutClick(event) {
   gapi.auth2.getAuthInstance().signOut();
 }
 function handleSubmitClick(event) {
-  uploadFiles()
+  uploadFiles(event)
 }
 
 //http://thenewcode.com/834/Auto-Generate-Image-Captions-With-Progressive-JavaScript
