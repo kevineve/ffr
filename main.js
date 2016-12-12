@@ -49,15 +49,15 @@ console.log(submitButton)
  */
 function uploadFiles (event) {
   console.log("uploadFiles")
-  console.log(window.receiptText)
-  parseReceiptData(window.receiptText)
-  // event.preventDefault(); // Prevent the default form post
+  // console.log(window.receiptText)
+  // parseReceiptData(window.receiptText)
+  event.preventDefault(); // Prevent the default form post
 
-  // // Grab the file and asynchronously convert to base64.
-  // var file = $('#fileform [name=fileField]')[0].files[0];
-  // var reader = new FileReader();
-  // reader.onloadend = processFile;
-  // reader.readAsDataURL(file);
+  // Grab the file and asynchronously convert to base64.
+  var file = $('#fileform [name=fileField]')[0].files[0];
+  var reader = new FileReader();
+  reader.onloadend = processFile;
+  reader.readAsDataURL(file);
 }
 
 /**
@@ -257,9 +257,9 @@ function displayJSON (data) {
   $('#results').text(contents);
   var evt = new Event('results-displayed');
   parseReceiptData(data);
-  evt.results = contents;
-  //document.dispatchEvent(evt);
-  //document.write(data);
+  // evt.results = contents;
+  // document.dispatchEvent(evt);
+  // document.write(data);
   // var levt = new Event('list-displayed');
   // levt.results = window.foodList;
   // document.dispatchEvent(levt);
