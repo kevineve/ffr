@@ -295,7 +295,7 @@ function httpGetAsync(item, callback) {
           },
           type: "GET",
           // Request body
-          data: "{body}",
+          data: "{Host:api.cognitive.microsoft.com,Ocp-Apim-Subscription-Key:05654133782e421b868d8c38e2924e36}",
       })
       .done(function(data) {
           alert("success");
