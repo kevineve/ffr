@@ -271,6 +271,7 @@ function show_image(src, alt) {
     img.src = src;
     img.width = 600;
     img.height = 400;
+    img.title = "HOOORAY"
     //img.alt = alt;
 
     // This next line will just add it to the <body> tag
