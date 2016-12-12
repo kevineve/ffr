@@ -162,7 +162,8 @@ function loadContents(){
     for(var i = 0; i < fridgeContents.length;i++){
       console.log(fridgeContents[i.toString()])
       purchaseDate = new Date(fridgeContents[i.toString()]["2"])
-      daysFresh = fridgeContents[i.toString()]["1"]
+      console.log(purchaseDate)
+      daysFresh = int(fridgeContents[i.toString()]["1"])
       url = window.urlList[fridgeContents[i.toString()]["3"]]
       purchaseDate.setDate(purchaseDate.getDate() + daysFresh)
       if(purchaseDate>date){
