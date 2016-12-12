@@ -36,9 +36,7 @@ var signoutButton = document.getElementById('signout-button');
 console.log(signoutButton)
 var submitButton = document.getElementById('submit-button');
 console.log(submitButton)
-var outputDiv = document.createElement('div')
-console.log(outputDiv)
-console.log("yus")
+
 // $(function () {
 //   $('#fileform').on('submit', uploadFiles);
 // });
@@ -293,6 +291,7 @@ function appendItem(src,item,date){
   var caption = document.createElement( 'figcaption' );
   caption.innerHTML = item 
 
+  var outputDiv = document.createElement('div')
   document.getElementsByTagName('body')[0].appendChild(outputDiv);
   outputDiv.appendChild(fig)
   fig.appendChild(img)
