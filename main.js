@@ -68,6 +68,7 @@ function uploadFiles (event) {
  * Event handler for a file's data url - extract the image data and pass it off.
  */
 function processFile (event) {
+  console.log("processFile")
   var content = event.target.result;
   sendFileToCloudVision(content.replace('data:image/jpeg;base64,', ''));
 }
@@ -77,6 +78,7 @@ function processFile (event) {
  * results.
  */
 function sendFileToCloudVision (content) {
+  console.log("processFile")
   var type = $('#fileform [name=type]').val();
 
   // Strip out the file prefix when you convert to json.
@@ -103,7 +105,7 @@ function sendFileToCloudVision (content) {
 }
 
 function parseReceiptData(data){
-  //console.log(data)
+  console.log(parseReceiptData)
   //var recieptContent = data.responses[0].textAnnotations[0].description
   var foundFood = []
   var recieptContent = data
@@ -128,6 +130,7 @@ function parseReceiptData(data){
   //   console.log(foundFood[i])
   // }
   storeData(foundFood);
+
 }
 
 function storeData(foundFood){
@@ -257,6 +260,7 @@ function capitalizeFirstLetter(string) {
  * Displays the results.
  */
 function displayJSON (data) {
+  console.log("displayJSON")
   var contents = JSON.stringify(data, null, 4);
   $('#results').text(contents);
   var evt = new Event('results-displayed');
