@@ -285,7 +285,7 @@ function appendItem(src,item,date){
 
   var caption = document.createElement( 'figcaption' );
   caption.innerHTML = item + "Fresh Until: " + date
-  caption.style.text-align = 'center';
+  caption.style.textAlign = 'center';
 
   var outputDiv = document.createElement('div')
   document.getElementsByTagName('body')[0].appendChild(outputDiv);
