@@ -89,7 +89,7 @@ function sendFileToCloudVision (content) {
     }]
   };
 
-  $('#results').text('Loading...');
+  // $('#results').text('Loading...');
   $.post({
     url: CV_URL,
     data: JSON.stringify(request),
