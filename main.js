@@ -89,7 +89,7 @@ function sendFileToCloudVision (content) {
     }]
   };
 
-  // $('#results').text('Loading...');
+  $('#results').text('Loading...');
   $.post({
     url: CV_URL,
     data: JSON.stringify(request),
@@ -256,7 +256,7 @@ function capitalizeFirstLetter(string) {
 function displayJSON (data) {
   console.log("displayJSON")
   // var contents = JSON.stringify(data, null, 4);
-  // $('#results').text(contents);
+  $('#results').text("");
   //var evt = new Event('results-displayed');
   parseReceiptData(data);
   // evt.results = contents;
