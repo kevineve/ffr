@@ -166,15 +166,9 @@ function loadContents(){
       purchaseDate = new Date(fridgeContents[i.toString()]["2"])
       daysFresh = fridgeContents[i.toString()]["1"]
       url = window.urlList[fridgeContents[i.toString()]["3"]]
-      console.log(url)
-      console.log(purchaseDate, date)
       purchaseDate.setDate(purchaseDate.getDate() + daysFresh)
-      console.log(purchaseDate)
       if(purchaseDate>date){
         appendItem(url,fridgeContents[i.toString()][0],purchaseDate.toDateString())
-        // appendPre(fridgeContents[i.toString()][0])
-        // appendPre(purchaseDate.toDateString())
-        // show_image(url)
       }
     }
   });
@@ -282,6 +276,7 @@ function show_image(src, alt) {
 //http://thenewcode.com/834/Auto-Generate-Image-Captions-With-Progressive-JavaScript
 function appendItem(src,item,date){
   var fig = document.createElement('figure')
+  fig.style.display = 'inline-block;'
 
   var img = document.createElement("img");
   img.src = src;
@@ -289,7 +284,8 @@ function appendItem(src,item,date){
   img.height = 400;
 
   var caption = document.createElement( 'figcaption' );
-  caption.innerHTML = item 
+  caption.innerHTML = item + "Fresh Until: " + date
+  caption.style.text-align = 'center';
 
   var outputDiv = document.createElement('div')
   document.getElementsByTagName('body')[0].appendChild(outputDiv);
