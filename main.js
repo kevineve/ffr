@@ -269,8 +269,8 @@ function appendPre(message) {
 function show_image(src, alt) {
     var img = document.createElement("img");
     img.src = src;
-    // img.width = width;
-    // img.height = height;
+    img.width = 600;
+    img.height = 400;
     //img.alt = alt;
 
     // This next line will just add it to the <body> tag
