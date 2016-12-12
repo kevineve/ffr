@@ -14,7 +14,6 @@
 'use strict';
 
 var CV_URL = 'https://vision.googleapis.com/v1/images:annotate?key=' + window.apiKey;
-
 // Enter an API key from the Google API Console:
 //   https://console.developers.google.com/apis/credentials
 var apiKey = 'AIzaSyArDF3GHuVKoCAL8hRkDFFCOQ7NqmICQjQ';
@@ -37,8 +36,6 @@ var signoutButton = document.getElementById('signout-button');
 console.log(signoutButton)
 var submitButton = document.getElementById('submit-button');
 console.log(submitButton)
-// var mobileInput = document.getElementById('mobileInput');
-// console.log(mobileInput)
 
 // $(function () {
 //   $('#fileform').on('submit', uploadFiles);
@@ -166,13 +163,14 @@ function loadContents(){
       console.log(fridgeContents[i.toString()])
       purchaseDate = new Date(fridgeContents[i.toString()]["2"])
       daysFresh = fridgeContents[i.toString()]["1"]
-      //url = window.urlList[fridgeContents[i.toString()]["3"]]
+      url = window.urlList[fridgeContents[i.toString()]["3"]]
       console.log(purchaseDate, date)
       purchaseDate.setDate(purchaseDate.getDate() + daysFresh)
       console.log(purchaseDate)
       if(purchaseDate>date){
-        appendPre(fridgeContents[i.toString()][0],purchaseDate)
+        appendPre(fridgeContents[i.toString()][0])
         appendPre(purchaseDate.toDateString())
+        show_image(url)
       }
     }
   });
@@ -200,7 +198,6 @@ function initClient() {
     signoutButton.onclick = handleSignoutClick;
     submitButton.onclick = handleSubmitClick;
     loadContents()
-    // mobileInput.onclick = handleMobileInput;
   });
 }
 
@@ -266,12 +263,12 @@ function appendPre(message) {
 }
 
 // http://stackoverflow.com/questions/5451445/how-to-display-image-with-javascript
-function show_image(src, width, height, alt) {
+function show_image(src, alt) {
     var img = document.createElement("img");
     img.src = src;
-    img.width = width;
-    img.height = height;
-    img.alt = alt;
+    // img.width = width;
+    // img.height = height;
+    //img.alt = alt;
 
     // This next line will just add it to the <body> tag
     document.body.appendChild(img);
