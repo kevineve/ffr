@@ -108,6 +108,7 @@ function parseReceiptData(data){
           continue
         }
         foundFood.push([match[0],regexList[k][1], date , k])
+        storedFoodId.push(k)
         console.log([match[0],regexList[k][1], date , k])
         //continue to avoid multiple matches 
         continue
@@ -142,6 +143,7 @@ function storeData(foundFood){
 */
 function loadContents(){
   console.log("loadContents")
+  storedFoodId = []
   gapi.client.sheets.spreadsheets.values.get({
     "spreadsheetId": '1VZwr1nCFcEs7Cnr2u-Gq-92ayhf3QWAtlPiUdeOn7e8',
     "range": 'Sheet1!A2:D300',
