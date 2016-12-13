@@ -99,8 +99,8 @@ function parseReceiptData(data){
     for( var k = 0; k < regexList.length; k++){
       //attempt to match each row with entire regex list of foods
       match = listRows[i].match(regexList[k][0])
-      console.log(storedFoodId.indexOf(k))
       if(match){
+        console.log(storedFoodId.indexOf(k))
         if(storedFoodId.indexOf(k)===-1){
           continue
         }
