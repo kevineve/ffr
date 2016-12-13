@@ -40,9 +40,6 @@ console.log(signoutButton)
 $(function () {
   $('#fileform').on('submit', uploadFiles);
 });
-
-
-
 /**
  * 'submit' event handler - reads the image bytes and sends it to the Cloud
  * Vision API.
@@ -58,7 +55,6 @@ function uploadFiles (event) {
   reader.readAsDataURL(file);
   console.log("here")
 }
-
 /**
  * Event handler for a file's data url - extract the image data and pass it off.
  */
@@ -120,11 +116,8 @@ function parseReceiptData(data){
       }
     }
   }
-  // for(var i = 0; i < foundFood.length; i++){
-  //   console.log(foundFood[i])
-  // }
   storeData(foundFood);
-
+  loadContents()
 }
 
 function storeData(foundFood){
