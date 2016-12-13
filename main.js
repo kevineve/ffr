@@ -1,34 +1,19 @@
-// Copyright 2015, Google, Inc.
-// Licensed under the Apache License, Version 2.0 (the "License")
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//    http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 'use strict';
 
+//Google Cloud Engine Vision Sample code taken from:
+//https://github.com/GoogleCloudPlatform/web-docs-samples/tree/master/vision/explore-api
+//
+//Google Authentication Sample code take from:
+//https://developers.google.com/sheets/api/quickstart/js
+
 var CV_URL = 'https://vision.googleapis.com/v1/images:annotate?key=' + window.apiKey;
-// Enter an API key from the Google API Console:
-//   https://console.developers.google.com/apis/credentials
+
 var apiKey = 'AIzaSyArDF3GHuVKoCAL8hRkDFFCOQ7NqmICQjQ';
-// Enter the API Discovery Docs that describes the APIs you want to
-// access. In this example, we are accessing the People API, so we load
-// Discovery Doc found here: https://developers.google.com/people/api/rest/
+
 var discoveryDocs = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
-// Enter a client ID for a web application from the Google API Console:
-//   https://console.developers.google.com/apis/credentials?project=_
-// In your API Console project, add a JavaScript origin that corresponds
-//   to the domain where you will be running the script.
+
 var clientId = '730754927773-52c3bj4309k9co16t4mjrlppe1ujvqr9.apps.googleusercontent.com';
-// Enter one or more authorization scopes. Refer to the documentation for
-// the API or https://developers.google.com/people/v1/how-tos/authorizing
-// for details.
+
 var scopes = 'https://www.googleapis.com/auth/spreadsheets';
 var authorizeButton = document.getElementById('authorize-button');
 console.log(authorizeButton)
@@ -41,6 +26,7 @@ $(function () {
   $('#fileform').on('submit', uploadFiles);
 });
 /**
+ *  Method in its entireity from Google Cloud Engine Vision Sample 
  * 'submit' event handler - reads the image bytes and sends it to the Cloud
  * Vision API.
  */
@@ -56,6 +42,7 @@ function uploadFiles (event) {
   console.log("here")
 }
 /**
+ * Method in its entireity from Google Cloud Engine Vision Sample 
  * Event handler for a file's data url - extract the image data and pass it off.
  */
 function processFile (event) {
@@ -65,6 +52,7 @@ function processFile (event) {
 }
 
 /**
+ * Method in its entireity from Google Cloud Engine Vision Sample 
  * Sends the given file contents to the Cloud Vision API and outputs the
  * results.
  */
@@ -95,6 +83,9 @@ function sendFileToCloudVision (content) {
   }).done(displayJSON);
 }
 
+/**
+* Parse food items from the text output from google cloud engine text detection
+*/
 function parseReceiptData(data){
   console.log(parseReceiptData)
   var recieptContent = data.responses[0].textAnnotations[0].description
@@ -102,16 +93,17 @@ function parseReceiptData(data){
   var regexList = window.foodList
   var match
   var date = new Date()
-  //console.log(recieptContent)
+  //split receipt content into rows 
   var listRows = recieptContent.split('\n')
   for(var i = 0; i < listRows.length; i++){
     for( var k = 0; k < regexList.length; k++){
-      //console.log(listRows[i])
+      //attempt to match each row with entire regex list of foods
       match = listRows[i].match(regexList[k][0])
       if(match){
+
         foundFood.push([match[0],regexList[k][1], date , k])
         console.log([match[0],regexList[k][1], date , k])
-        //console.log([match[0],(j*4 + 3).toString(), date])
+        //continue to avoid multiple matches 
         continue
       }
     }
