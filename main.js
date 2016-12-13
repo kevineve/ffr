@@ -88,6 +88,7 @@ function sendFileToCloudVision (content) {
 */
 function parseReceiptData(data){
   console.log(parseReceiptData)
+  console.log(storedFoodId)
   var recieptContent = data.responses[0].textAnnotations[0].description
   var foundFood = []
   var regexList = window.foodList
