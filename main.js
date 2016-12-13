@@ -202,6 +202,7 @@ function initClient() {
     //submitButton.onclick = handleSubmitClick;
     loadContents()
     outputDiv = document.createElement('div')
+    document.getElementsByTagName('body')[0].appendChild(outputDiv);
   });
 }
 
