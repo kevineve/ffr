@@ -118,7 +118,7 @@ function parseReceiptData(data){
   //clear output
   outputDiv = document.createElement('div')
   storeData(foundFood);
-  loadContents()
+  //loadContents()
 }
 /*
 * Method written by hand, drawing from google sheets sample code
@@ -134,6 +134,7 @@ function storeData(foundFood){
     "values":foundFood,
   }).then(function(response) {
     //console.log(response)
+    loadContents()
   });
 }
 
