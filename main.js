@@ -15,12 +15,11 @@ var discoveryDocs = ["https://sheets.googleapis.com/$discovery/rest?version=v4"]
 var clientId = '730754927773-52c3bj4309k9co16t4mjrlppe1ujvqr9.apps.googleusercontent.com';
 
 var scopes = 'https://www.googleapis.com/auth/spreadsheets';
+
+var storedFoodId= []
 var authorizeButton = document.getElementById('authorize-button');
-console.log(authorizeButton)
 var signoutButton = document.getElementById('signout-button');
-console.log(signoutButton)
-// var submitButton = document.getElementById('submit-button');
-// console.log(submitButton)
+
 
 $(function () {
   $('#fileform').on('submit', uploadFiles);
@@ -100,8 +99,11 @@ function parseReceiptData(data){
     for( var k = 0; k < regexList.length; k++){
       //attempt to match each row with entire regex list of foods
       match = listRows[i].match(regexList[k][0])
-      if(match){
-
+      console.log(storedFoodId.indexOf(k))
+      if(match{
+        if(storedFoodId.indexOf(k)===-1){
+          continue
+        }
         foundFood.push([match[0],regexList[k][1], date , k])
         console.log([match[0],regexList[k][1], date , k])
         //continue to avoid multiple matches 
@@ -138,7 +140,7 @@ function loadContents(){
   console.log("loadContents")
   gapi.client.sheets.spreadsheets.values.get({
     "spreadsheetId": '1VZwr1nCFcEs7Cnr2u-Gq-92ayhf3QWAtlPiUdeOn7e8',
-    "range": 'Sheet1!A2:D100',
+    "range": 'Sheet1!A2:D300',
     "majorDimension": "ROWS",
   }).then(function(response) {
     //appendPre('Error: ' + response.error.message);
@@ -164,6 +166,7 @@ function loadContents(){
       //if item has yet to go bad, display on page
       if(purchaseDate>date){
         appendItem(url,fridgeContents[i.toString()][0],purchaseDate.toDateString())
+        storedFoodId.push(fridgeContents[i.toString()]["4"])
       }
     }
   });
