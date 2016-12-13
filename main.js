@@ -243,7 +243,7 @@ function handleSubmitClick(event) {
 *http://thenewcode.com/834/Auto-Generate-Image-Captions-With-Progressive-JavaScript
 */
 function appendItem(src,item,date){
-  fig = document.createElement('figure')
+  var fig = document.createElement('figure')
   fig.style.display = 'table;'
 
   var img = document.createElement("img");
