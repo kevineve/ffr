@@ -17,7 +17,7 @@ var clientId = '730754927773-52c3bj4309k9co16t4mjrlppe1ujvqr9.apps.googleusercon
 var scopes = 'https://www.googleapis.com/auth/spreadsheets';
 
 var storedFoodId= []
-var fig
+var outputDiv
 var authorizeButton = document.getElementById('authorize-button');
 var signoutButton = document.getElementById('signout-button');
 
@@ -199,10 +199,6 @@ function initClient() {
     authorizeButton.onclick = handleAuthClick;
     signoutButton.onclick = handleSignoutClick;
     //submitButton.onclick = handleSubmitClick;
-    var outputDiv = document.createElement('div')
-    outputDiv.style.display = "inline-block"
-    document.getElementsByTagName('body')[0].appendChild(outputDiv);
-    outputDiv.appendChild(fig)
     loadContents()
   });
 }
@@ -259,6 +255,11 @@ function appendItem(src,item,date){
   caption.innerHTML = capitalizeFirstLetter(item) + " Fresh Until: " + date
   caption.style.textAlign = 'center';
 
+  document.getElementsByTagName('body')[0].removeChild(outputDiv)
+  outputDiv = document.createElement('div')
+  outputDiv.style.display = "inline-block"
+  document.getElementsByTagName('body')[0].appendChild(outputDiv);
+  outputDiv.appendChild(fig)
   fig.appendChild(img)
   fig.appendChild(caption)
 
