@@ -101,7 +101,7 @@ function parseReceiptData(data){
       match = listRows[i].match(regexList[k][0])
       if(match){
         console.log(storedFoodId.indexOf(k))
-        if(storedFoodId.indexOf(k)===-1){
+        if(!storedFoodId.indexOf(k)===-1){
           continue
         }
         foundFood.push([match[0],regexList[k][1], date , k])
@@ -154,10 +154,9 @@ function loadContents(){
     var daysFresh = 0
     var url = " "
     for(var i = 0; i < fridgeContents.length;i++){
-      console.log(fridgeContents[i.toString()])
+      //console.log(fridgeContents[i.toString()])
       //pull data from json response
       purchaseDate = new Date(fridgeContents[i.toString()]["2"])
-      console.log(purchaseDate)
       daysFresh = parseInt(fridgeContents[i.toString()]["1"])
       url = window.urlList[fridgeContents[i.toString()]["3"]]
       //date addition to get eat by date
