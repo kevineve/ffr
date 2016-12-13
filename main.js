@@ -266,7 +266,7 @@ function appendItem(src,item,date){
   caption.style.textAlign = 'center';
 
   var foodDiv = document.createElement('div')
-  //foodDiv.style.display = "inline-block"
+  foodDiv.style.display = "inline-block"
   outputDiv.appendChild(foodDiv);
   foodDiv.appendChild(fig)
   fig.appendChild(img)
