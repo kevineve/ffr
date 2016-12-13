@@ -263,10 +263,10 @@ function appendItem(src,item,date){
   caption.innerHTML = capitalizeFirstLetter(item) + " Fresh Until: " + date
   caption.style.textAlign = 'center';
 
-  // outputDiv = document.createElement('div')
-  // outputDiv.style.display = "inline-block"
-  // document.getElementsByTagName('body')[0].appendChild(outputDiv);
-  outputDiv.appendChild(fig)
+  var foodDiv = document.createElement('div')
+  foodDiv.style.display = "inline-block"
+  outputDiv.appendChild(foodDiv);
+  foodDiv.appendChild(fig)
   fig.appendChild(img)
   fig.appendChild(caption)
 
