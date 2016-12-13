@@ -90,6 +90,7 @@ function sendFileToCloudVision (content) {
 function parseReceiptData(data){
   console.log(parseReceiptData)
   console.log(storedFoodId)
+  outputDiv = document.createElement('div')
   var recieptContent = data.responses[0].textAnnotations[0].description
   var foundFood = []
   var regexList = window.foodList
@@ -147,7 +148,6 @@ function loadContents(){
   }).then(function(response) {
     //appendPre('Error: ' + response.error.message);
     console.log(response)
-    document.getElementsByTagName('body')[0].removeChild(outputDiv)
     if(!response.result.values){
       return
     }
@@ -201,8 +201,7 @@ function initClient() {
     signoutButton.onclick = handleSignoutClick;
     //submitButton.onclick = handleSubmitClick;
     loadContents()
-    outputDiv = document.createElement('div')
-    document.getElementsByTagName('body')[0].appendChild(outputDiv);
+    initDiv()
   });
 }
 
@@ -241,6 +240,13 @@ function handleSubmitClick(event) {
   uploadFiles(event)
 }
 
+function initDiv(){
+  outputDiv = document.createElement('div')
+  outputDiv.style.display = "inline-block"
+  document.getElementsByTagName('body')[0].appendChild(outputDiv);
+}
+
+
 /*
 *method inspired by 
 *http://thenewcode.com/834/Auto-Generate-Image-Captions-With-Progressive-JavaScript
@@ -258,9 +264,9 @@ function appendItem(src,item,date){
   caption.innerHTML = capitalizeFirstLetter(item) + " Fresh Until: " + date
   caption.style.textAlign = 'center';
 
-  outputDiv = document.createElement('div')
-  outputDiv.style.display = "inline-block"
-  document.getElementsByTagName('body')[0].appendChild(outputDiv);
+  // outputDiv = document.createElement('div')
+  // outputDiv.style.display = "inline-block"
+  // document.getElementsByTagName('body')[0].appendChild(outputDiv);
   outputDiv.appendChild(fig)
   fig.appendChild(img)
   fig.appendChild(caption)
