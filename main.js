@@ -147,6 +147,7 @@ function loadContents(){
   }).then(function(response) {
     //appendPre('Error: ' + response.error.message);
     console.log(response)
+    document.getElementsByTagName('body')[0].removeChild(outputDiv)
     if(!response.result.values){
       return
     }
@@ -200,6 +201,7 @@ function initClient() {
     signoutButton.onclick = handleSignoutClick;
     //submitButton.onclick = handleSubmitClick;
     loadContents()
+    outputDiv = document.createElement('div')
   });
 }
 
@@ -255,7 +257,6 @@ function appendItem(src,item,date){
   caption.innerHTML = capitalizeFirstLetter(item) + " Fresh Until: " + date
   caption.style.textAlign = 'center';
 
-  document.getElementsByTagName('body')[0].removeChild(outputDiv)
   outputDiv = document.createElement('div')
   outputDiv.style.display = "inline-block"
   document.getElementsByTagName('body')[0].appendChild(outputDiv);
