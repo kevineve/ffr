@@ -241,7 +241,7 @@ function handleSubmitClick(event) {
 
 function initDiv(){
   outputDiv = document.createElement('div')
-  outputDiv.style.float = "left"
+  outputDiv.style.display = "inline-block"
   document.getElementsByTagName('body')[0].appendChild(outputDiv);
 }
 
