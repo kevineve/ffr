@@ -166,7 +166,7 @@ function loadContents(){
       //if item has yet to go bad, display on page
       if(purchaseDate>date){
         appendItem(url,fridgeContents[i.toString()][0],purchaseDate.toDateString())
-        storedFoodId.push(fridgeContents[i.toString()]["4"])
+        storedFoodId.push(fridgeContents[i.toString()]["3"])
       }
     }
   });
