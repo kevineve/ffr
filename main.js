@@ -90,7 +90,7 @@ function sendFileToCloudVision (content) {
 function parseReceiptData(data){
   console.log(parseReceiptData)
   console.log(storedFoodId)
-  outputDiv = document.createElement('div')
+  
   var recieptContent = data.responses[0].textAnnotations[0].description
   var foundFood = []
   var regexList = window.foodList
@@ -114,6 +114,8 @@ function parseReceiptData(data){
       }
     }
   }
+  //clear output
+  outputDiv = document.createElement('div')
   storeData(foundFood);
   loadContents()
 }
@@ -264,7 +266,7 @@ function appendItem(src,item,date){
   caption.style.textAlign = 'center';
 
   var foodDiv = document.createElement('div')
-  foodDiv.style.display = "inline-block"
+  //foodDiv.style.display = "inline-block"
   outputDiv.appendChild(foodDiv);
   foodDiv.appendChild(fig)
   fig.appendChild(img)
