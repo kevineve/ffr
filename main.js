@@ -3,7 +3,7 @@
 //Google Cloud Engine Vision Sample code taken from:
 //https://github.com/GoogleCloudPlatform/web-docs-samples/tree/master/vision/explore-api
 //
-//Google Authentication Sample code take from:
+//Google Sheets Authentication Sample code take from:
 //https://developers.google.com/sheets/api/quickstart/js
 
 var CV_URL = 'https://vision.googleapis.com/v1/images:annotate?key=' + window.apiKey;
@@ -84,6 +84,7 @@ function sendFileToCloudVision (content) {
 }
 
 /**
+* 
 * Parse food items from the text output from google cloud engine text detection
 */
 function parseReceiptData(data){
@@ -111,7 +112,10 @@ function parseReceiptData(data){
   storeData(foundFood);
   loadContents()
 }
-
+/*
+* Method written by hand, drawing from google sheets sample code
+* Store contents of found Food list in google sheet
+*/
 function storeData(foundFood){
   console.log("storeData")
   gapi.client.sheets.spreadsheets.values.append({
@@ -121,12 +125,15 @@ function storeData(foundFood){
     "majorDimension": "ROWS",
     "values":foundFood,
   }).then(function(response) {
-    //appendPre('Error: ' + response.error.message);
     console.log(response)
     loadContents();
   });
 }
 
+/*
+* Method written by hand, drawing from google sheets sample code
+* Load contents of google sheet and display on page
+*/
 function loadContents(){
   console.log("loadContents")
   gapi.client.sheets.spreadsheets.values.get({
@@ -140,31 +147,39 @@ function loadContents(){
       return
     }
     var fridgeContents = response.result.values
-    //console.log(fridgeContents)
     var purchaseDate;
     var date = new Date()
     var daysFresh = 0
     var url = " "
     for(var i = 0; i < fridgeContents.length;i++){
       console.log(fridgeContents[i.toString()])
+      //pull data from json response
       purchaseDate = new Date(fridgeContents[i.toString()]["2"])
       console.log(purchaseDate)
       daysFresh = parseInt(fridgeContents[i.toString()]["1"])
       url = window.urlList[fridgeContents[i.toString()]["3"]]
+      //date addition to get eat by date
       purchaseDate.setDate(purchaseDate.getDate() + daysFresh)
+      //purchaseDate now refers to eat by date
+      //if item has yet to go bad, display on page
       if(purchaseDate>date){
         appendItem(url,fridgeContents[i.toString()][0],purchaseDate.toDateString())
       }
     }
   });
 }
-
- function handleClientLoad() {
+/*
+*method in its entirity take from good sheets authenticatin code
+*/
+function handleClientLoad() {
   // Load the API client and auth2 library
   console.log("handleClientLoad")
   gapi.load('client:auth2', initClient);
 }
 
+/*
+*method in its entirity take from good sheets authenticatin code
+*/
 function initClient() {
   console.log("initClient")
   gapi.client.init({
@@ -184,6 +199,9 @@ function initClient() {
   });
 }
 
+/*
+*method in its entirity take from good sheets authenticatin code
+*/
 function updateSigninStatus(isSignedIn) {
   console.log("updateSigninStatus")
   if (isSignedIn) {
@@ -195,19 +213,31 @@ function updateSigninStatus(isSignedIn) {
   }
 }
 
+/*
+*method in its entirity take from good sheets authenticatin code
+*/
 function handleAuthClick(event) {
   console.log("handleAuthClick")
   gapi.auth2.getAuthInstance().signIn();
 }
+/*
+*method in its entirity take from good sheets authenticatin code
+*/
 function handleSignoutClick(event) {
   console.log("handleSignoutClick")
   gapi.auth2.getAuthInstance().signOut();
 }
+/*
+*method in its entirity take from good sheets authenticatin code
+*/
 function handleSubmitClick(event) {
   uploadFiles(event)
 }
 
-//http://thenewcode.com/834/Auto-Generate-Image-Captions-With-Progressive-JavaScript
+/*
+*method inspired by 
+*http://thenewcode.com/834/Auto-Generate-Image-Captions-With-Progressive-JavaScript
+*/
 function appendItem(src,item,date){
   var fig = document.createElement('figure')
   fig.style.display = 'table;'
@@ -236,18 +266,10 @@ function capitalizeFirstLetter(string) {
 }
 
 /**
- * Displays the results.
+ * method adapted from google Computer Vision Sample Code
  */
 function displayJSON (data) {
   console.log("displayJSON")
-  // var contents = JSON.stringify(data, null, 4);
   $('#results').text("");
-  //var evt = new Event('results-displayed');
   parseReceiptData(data);
-  // evt.results = contents;
-  // document.dispatchEvent(evt);
-  // document.write(data);
-  // var levt = new Event('list-displayed');
-  // levt.results = window.foodList;
-  // document.dispatchEvent(levt);
 }
