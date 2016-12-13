@@ -130,8 +130,7 @@ function storeData(foundFood){
     "majorDimension": "ROWS",
     "values":foundFood,
   }).then(function(response) {
-    console.log(response)
-    loadContents();
+    //console.log(response)
   });
 }
 
