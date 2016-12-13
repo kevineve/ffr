@@ -255,7 +255,7 @@ function appendItem(src,item,date){
   caption.innerHTML = capitalizeFirstLetter(item) + " Fresh Until: " + date
   caption.style.textAlign = 'center';
 
-  document.getElementsByTagName('body')[0].removeChild(outputDiv)
+  //document.getElementsByTagName('body')[0].removeChild(outputDiv)
   outputDiv = document.createElement('div')
   outputDiv.style.display = "inline-block"
   document.getElementsByTagName('body')[0].appendChild(outputDiv);
