@@ -130,7 +130,7 @@ function parseReceiptData(data){
   //clear output
   clearDiv()
   storeData(foundFood);
-  loadContents()
+  //loadContents()
 }
 /*
 * Method written by hand, drawing from google sheets sample code
@@ -146,6 +146,7 @@ function storeData(foundFood){
     "values":foundFood,
   }).then(function(response) {
     //console.log(response)
+    loadContents()
   });
 }
 
@@ -275,7 +276,8 @@ function clearDiv(){
 
 /*
 *method inspired by 
-*http://thenewcode.com/834/Auto-Generate-Image-Captions-With-Progressive-JavaScript
+*http://thenewcode.com/834/Auto-Generate-Image-Captions-With-Progressive-
+*Generate images and captions to display stored food
 */
 function appendItem(src,item,date){
   //create elements for each food photo and caption
