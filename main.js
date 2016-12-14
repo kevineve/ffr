@@ -42,7 +42,6 @@ $(function () {
  * Vision API.
  */
 function uploadFiles (event) {
-  console.log("uploadFiles")
   event.preventDefault(); // Prevent the default form post
 
   // Grab the file and asynchronously convert to base64.
@@ -50,14 +49,12 @@ function uploadFiles (event) {
   var reader = new FileReader();
   reader.onloadend = processFile;
   reader.readAsDataURL(file);
-  console.log("here")
 }
 /**
  * Method in its entireity from Google Cloud Engine Vision Sample 
  * Event handler for a file's data url - extract the image data and pass it off.
  */
 function processFile (event) {
-  console.log("processFile")
   var content = event.target.result;
   sendFileToCloudVision(content.replace('data:image/jpeg;base64,', ''));
 }
@@ -68,7 +65,6 @@ function processFile (event) {
  * results.
  */
 function sendFileToCloudVision (content) {
-  console.log("processFile")
   var type = $('#fileform [name=type]').val();
 
   // Strip out the file prefix when you convert to json.
@@ -99,9 +95,7 @@ function sendFileToCloudVision (content) {
 * Parse food items from the text output from google cloud engine text detection
 */
 function parseReceiptData(data){
-  console.log(parseReceiptData)
-  console.log(storedFoodId)
-  
+  //get text content from google could json data
   var recieptContent = data.responses[0].textAnnotations[0].description
   var foundFood = []
   //get list from keys.js
@@ -115,13 +109,12 @@ function parseReceiptData(data){
       //attempt to match each row with entire regex list of foods
       match = listRows[i].match(regexList[k][0])
       if(match){
-        console.log(storedFoodId.indexOf(k))
+        //if k is in list of IDs then it is a duplicate, dont add to list
         if(storedFoodId.indexOf(k)!=-1){
           continue
         }
         foundFood.push([match[0],regexList[k][1], date , k])
         storedFoodId.push(k)
-        console.log([match[0],regexList[k][1], date , k])
         //continue to avoid multiple matches 
         continue
       }
@@ -145,7 +138,6 @@ function storeData(foundFood){
     "majorDimension": "ROWS",
     "values":foundFood,
   }).then(function(response) {
-    //console.log(response)
     loadContents()
   });
 }
@@ -162,8 +154,6 @@ function loadContents(){
     "range": 'Sheet1!A2:D300',
     "majorDimension": "ROWS",
   }).then(function(response) {
-    //appendPre('Error: ' + response.error.message);
-    console.log(response)
     if(!response.result.values){
       return
     }
@@ -173,7 +163,6 @@ function loadContents(){
     var daysFresh = 0
     var url = " "
     for(var i = 0; i < fridgeContents.length;i++){
-      //console.log(fridgeContents[i.toString()])
       //pull data from json response
       purchaseDate = new Date(fridgeContents[i.toString()]["2"])
       daysFresh = parseInt(fridgeContents[i.toString()]["1"])
@@ -185,7 +174,6 @@ function loadContents(){
       if(purchaseDate>date){
         appendItem(url,fridgeContents[i.toString()][0],purchaseDate.toDateString())
         storedFoodId.push(parseInt(fridgeContents[i.toString()]["3"]))
-        console.log(fridgeContents[i.toString()][0])
       }
     }
   });
@@ -195,7 +183,6 @@ function loadContents(){
 */
 function handleClientLoad() {
   // Load the API client and auth2 library
-  console.log("handleClientLoad")
   gapi.load('client:auth2', initClient);
 }
 
