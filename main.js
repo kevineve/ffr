@@ -116,7 +116,7 @@ function parseReceiptData(data){
     }
   }
   //clear output
-  initDiv()
+  clearDiv()
   storeData(foundFood);
   //loadContents()
 }
@@ -249,6 +249,11 @@ function initDiv(){
   outputDiv = document.createElement('div')
   outputDiv.style.display = "inline-block"
   document.getElementsByTagName('body')[0].appendChild(outputDiv);
+}
+
+function clearDiv(){
+  document.getElementsByTagName('body')[0].removeChild(outputDiv);
+  initDiv()
 }
 
 
