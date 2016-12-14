@@ -212,7 +212,6 @@ function initClient() {
 *method in its entirity taken from good sheets authenticatin code
 */
 function updateSigninStatus(isSignedIn) {
-  console.log("updateSigninStatus")
   if (isSignedIn) {
     authorizeButton.style.display = 'none';
     signoutButton.style.display = 'block';
@@ -226,14 +225,12 @@ function updateSigninStatus(isSignedIn) {
 *method in its entirity taken from good sheets authenticatin code
 */
 function handleAuthClick(event) {
-  console.log("handleAuthClick")
   gapi.auth2.getAuthInstance().signIn();
 }
 /*
 *method in its entirity taken from good sheets authenticatin code
 */
 function handleSignoutClick(event) {
-  console.log("handleSignoutClick")
   gapi.auth2.getAuthInstance().signOut();
 }
 /*
