@@ -116,7 +116,7 @@ function parseReceiptData(data){
     }
   }
   //clear output
-  outputDiv = document.createElement('div')
+  initDiv()
   storeData(foundFood);
   //loadContents()
 }
