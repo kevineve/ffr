@@ -173,6 +173,7 @@ function loadContents(){
       if(purchaseDate>date){
         appendItem(url,fridgeContents[i.toString()][0],purchaseDate.toDateString())
         storedFoodId.push(parseInt(fridgeContents[i.toString()]["3"]))
+        console.log(fridgeContents[i.toString()][0])
       }
     }
   });
