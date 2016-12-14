@@ -6,22 +6,33 @@
 //Google Sheets Authentication Sample code take from:
 //https://developers.google.com/sheets/api/quickstart/js
 
+//googe cloud engine url
 var CV_URL = 'https://vision.googleapis.com/v1/images:annotate?key=' + window.apiKey;
 
+//google sheets api key
 var apiKey = 'AIzaSyArDF3GHuVKoCAL8hRkDFFCOQ7NqmICQjQ';
 
+//sheets link required for api call
 var discoveryDocs = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
 
+//client id for good authentication
 var clientId = '730754927773-52c3bj4309k9co16t4mjrlppe1ujvqr9.apps.googleusercontent.com';
 
+//authentication scope for google sheets
 var scopes = 'https://www.googleapis.com/auth/spreadsheets';
 
+//list of stored food ID, used to avoid duplicates 
+//every item has a unique ID which is equal to the index of the item in the regex list
 var storedFoodId= []
+
+//global reference to the outer div of the displayed food items
 var outputDiv
+
+//authentication buttons 
 var authorizeButton = document.getElementById('authorize-button');
 var signoutButton = document.getElementById('signout-button');
 
-
+//submit button and file input field 
 $(function () {
   $('#fileform').on('submit', uploadFiles);
 });
@@ -93,6 +104,7 @@ function parseReceiptData(data){
   
   var recieptContent = data.responses[0].textAnnotations[0].description
   var foundFood = []
+  //get list from keys.js
   var regexList = window.foodList
   var match
   var date = new Date()
@@ -118,7 +130,7 @@ function parseReceiptData(data){
   //clear output
   clearDiv()
   storeData(foundFood);
-  //loadContents()
+  loadContents()
 }
 /*
 * Method written by hand, drawing from google sheets sample code
@@ -134,7 +146,6 @@ function storeData(foundFood){
     "values":foundFood,
   }).then(function(response) {
     //console.log(response)
-    loadContents()
   });
 }
 
@@ -204,14 +215,13 @@ function initClient() {
     updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
     authorizeButton.onclick = handleAuthClick;
     signoutButton.onclick = handleSignoutClick;
-    //submitButton.onclick = handleSubmitClick;
     loadContents()
     initDiv()
   });
 }
 
 /*
-*method in its entirity take from good sheets authenticatin code
+*method in its entirity taken from good sheets authenticatin code
 */
 function updateSigninStatus(isSignedIn) {
   console.log("updateSigninStatus")
@@ -225,32 +235,38 @@ function updateSigninStatus(isSignedIn) {
 }
 
 /*
-*method in its entirity take from good sheets authenticatin code
+*method in its entirity taken from good sheets authenticatin code
 */
 function handleAuthClick(event) {
   console.log("handleAuthClick")
   gapi.auth2.getAuthInstance().signIn();
 }
 /*
-*method in its entirity take from good sheets authenticatin code
+*method in its entirity taken from good sheets authenticatin code
 */
 function handleSignoutClick(event) {
   console.log("handleSignoutClick")
   gapi.auth2.getAuthInstance().signOut();
 }
 /*
-*method in its entirity take from good sheets authenticatin code
+*method in its entirity taken from good sheets authenticatin code
 */
-function handleSubmitClick(event) {
-  uploadFiles(event)
-}
+// function handleSubmitClick(event) {
+//   uploadFiles(event)
+// }
 
+/*
+*Initialize the html div which displays food images and text
+*/
 function initDiv(){
   outputDiv = document.createElement('div')
   outputDiv.style.display = "inline-block"
   document.getElementsByTagName('body')[0].appendChild(outputDiv);
 }
 
+/*
+*Clear and reinitialize the div which displays food images and text
+*/
 function clearDiv(){
   document.getElementsByTagName('body')[0].removeChild(outputDiv);
   initDiv()
@@ -262,6 +278,7 @@ function clearDiv(){
 *http://thenewcode.com/834/Auto-Generate-Image-Captions-With-Progressive-JavaScript
 */
 function appendItem(src,item,date){
+  //create elements for each food photo and caption
   var fig = document.createElement('figure')
   fig.style.display = 'table;'
 
@@ -276,6 +293,8 @@ function appendItem(src,item,date){
 
   var foodDiv = document.createElement('div')
   foodDiv.style.display = "inline-block"
+
+  //append each item to its html parent
   outputDiv.appendChild(foodDiv);
   foodDiv.appendChild(fig)
   fig.appendChild(img)
@@ -283,7 +302,7 @@ function appendItem(src,item,date){
 
 }
 
-//http://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
+//format text with correct capitalization 
 function capitalizeFirstLetter(string) {
     return string.charAt(0) + string.slice(1).toLowerCase();
 }
