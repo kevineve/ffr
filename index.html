@@ -1,10 +1,11 @@
 
-<!-- Adapted from google cloud sample code -->
+<!-- Adapted from google cloud sample code and google sheets sample code-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Fresh Food Reminder</title>
+  <h1>Fresh Food Reminder</h1>
   <button id="authorize-button" style="display: none;">Authorize</button>
   <button id="signout-button" style="display: none;">Sign Out</button>
 
@@ -19,6 +20,7 @@
 </head>
 <body>
   <form id="fileform" action="">
+   <!--  Allow input from camera to work on smartphones -->
     <input type="file" name="fileField" accept="image/*;capture=camera"><br /><br />
      <input type="submit" name="submit" value="Submit">
   </form>
