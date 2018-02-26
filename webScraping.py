@@ -1,9 +1,15 @@
 import requests
 import re
 import codecs 
+<<<<<<< HEAD
 import urllib, base64, json
 from bs4 import BeautifulSoup
 #from urlparse import urljoin
+=======
+import httplib, urllib, base64, json
+from bs4 import BeautifulSoup
+from urlparse import urljoin
+>>>>>>> 655bf812bf8f0ac778b2aa813497c6dbfd027b96
 
 def getFoods():
 	baseUrl='http://stilltasty.com/fooditems/index/'
@@ -14,7 +20,11 @@ def getFoods():
 	for i in range(16334,18914): 
 		
 		url = urljoin(baseUrl,str(i))
+<<<<<<< HEAD
 		#print url
+=======
+		print url
+>>>>>>> 655bf812bf8f0ac778b2aa813497c6dbfd027b96
 		html=requests.get(url).content
 
 		soup=BeautifulSoup(html,"html.parser")
@@ -54,7 +64,11 @@ def getFoods():
 			daysfresh = min(lastDays,daysfresh)
 			lastDays = daysfresh
 		foundFoods.append([title[0].strip(),daysfresh])
+<<<<<<< HEAD
 		#print title[0].strip()
+=======
+		print title[0].strip()
+>>>>>>> 655bf812bf8f0ac778b2aa813497c6dbfd027b96
 	return foundFoods
 
 def pruneData(foundFoods):
@@ -197,8 +211,12 @@ def getFoodUrl(item):
 foundFood = loadData("Data.txt")
 foundFood = pruneData(foundFood)
 foundFood = sortByLength(foundFood)
+<<<<<<< HEAD
 print(len(foundFood))
 #writeDataRegex(foundFood,"output.txt")
+=======
+writeDataRegex(foundFood,"output.txt")
+>>>>>>> 655bf812bf8f0ac778b2aa813497c6dbfd027b96
 
 
 
